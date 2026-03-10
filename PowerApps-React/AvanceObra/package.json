@@ -1,0 +1,12 @@
+{
+  "name": "avance-obra-control",
+  "private": true,
+  "scripts": {
+    "build": "pcf-scripts build",
+    "clean": "pcf-scripts clean",
+    "rebuild": "pcf-scripts rebuild"
+  },
+  "devDependencies": {
+    "pcf-scripts": "^1.51.1"
+  }
+}
