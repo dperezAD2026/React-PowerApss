@@ -62,6 +62,17 @@ export default function HomePage() {
     setDraggedId(null);
   }, [draggedId, mover, setDraggedId, setSeleccionada]);
 
+  // Agrupar etapas por categoría (siempre se evalúa para mantener orden estable de hooks)
+  const grupos = useMemo(() => {
+    const map = new Map<string, typeof etapas>();
+    for (const e of etapas) {
+      const cat = e.categoria || 'Sin categoría';
+      if (!map.has(cat)) map.set(cat, []);
+      map.get(cat)!.push(e);
+    }
+    return Array.from(map.entries());
+  }, [etapas]);
+
   // ─── Loading / Error ─────────────────────────────────────────────────────────
   if (etapasQ.isPending || casasQ.isPending) {
     return (
@@ -80,17 +91,6 @@ export default function HomePage() {
       </div>
     );
   }
-
-  // ─── Agrupar etapas por categoría ──────────────────────────────────────────
-  const grupos = useMemo(() => {
-    const map = new Map<string, typeof etapas>();
-    for (const e of etapas) {
-      const cat = e.categoria || 'Sin categoría';
-      if (!map.has(cat)) map.set(cat, []);
-      map.get(cat)!.push(e);
-    }
-    return Array.from(map.entries());
-  }, [etapas]);
 
   return (
     <>

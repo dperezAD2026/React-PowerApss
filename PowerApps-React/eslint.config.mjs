@@ -7,7 +7,7 @@ import typescriptEslint from "typescript-eslint";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: ["**/generated/"],
+    ignores: ["**/generated/", "**/out/**", "**/obj/**", "**/node_modules/**"],
   },
   eslintjs.configs.recommended,
   ...typescriptEslint.configs.recommended,
